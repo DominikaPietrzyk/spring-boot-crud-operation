@@ -1,8 +1,9 @@
 package com.example.springbootcrudoperation.controllers;
 
+import com.example.springbootcrudoperation.dto.UserDto;
+import com.example.springbootcrudoperation.map.UserMapper;
 import com.example.springbootcrudoperation.model.User;
 import com.example.springbootcrudoperation.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,11 +12,13 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    @Autowired
    private final UserService userService;
+   private final UserMapper userMapper;
 
-    public UserController(UserService userService) {
+
+    public UserController(UserService userService, UserMapper userMapper) {
         this.userService = userService;
+        this.userMapper = userMapper;
     }
 
     @GetMapping()
@@ -23,17 +26,12 @@ public class UserController {
         return userService.getAll();
     }
 
-    @PostMapping("/add")
-    public User addUser(@RequestBody User user){
-        return userService.add(user);
-    }
-
     @GetMapping("/user")
-    public User getUserById(@PathVariable("userId") Long userId){
+    public User getUserById(Long userId){
       return userService.findById(userId);
     }
 
-    @DeleteMapping("user/{userId}")
+    @DeleteMapping("/user/{userId}")
     public void deleteUserById(@PathVariable("userId") Long userId){
          userService.deleteById(userId);
     }
@@ -42,5 +40,16 @@ public class UserController {
     public void saveUser(User user){
           userService.save(user);
     }
+
+    @PostMapping("/update")
+   public UserDto update(@RequestBody UserDto userDto)
+   {
+       User user = userMapper.toEntity(userDto);
+       userService.save(user);
+       return userMapper.toDto(user);
+   }
+
+
+
 
 }

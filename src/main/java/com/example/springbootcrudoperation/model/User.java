@@ -17,8 +17,17 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name="lastName")
+    @Column(name="last_name")
     private String lastName;
+
+    public User() {
+    }
+
+    public User(Long id, String name, String lastName) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+    }
 
     public Long getId() {
         return id;
