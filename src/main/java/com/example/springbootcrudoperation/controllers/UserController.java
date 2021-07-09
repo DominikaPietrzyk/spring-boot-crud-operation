@@ -1,7 +1,7 @@
 package com.example.springbootcrudoperation.controllers;
 
 import com.example.springbootcrudoperation.dto.UserDto;
-import com.example.springbootcrudoperation.map.UserMapper;
+import com.example.springbootcrudoperation.mapper.UserMapper;
 import com.example.springbootcrudoperation.model.User;
 import com.example.springbootcrudoperation.service.UserService;
 import org.springframework.stereotype.Controller;

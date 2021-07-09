@@ -1,4 +1,4 @@
-package com.example.springbootcrudoperation.map;
+package com.example.springbootcrudoperation.mapper;
 
 import com.example.springbootcrudoperation.dto.UserDto;
 import com.example.springbootcrudoperation.model.User;
